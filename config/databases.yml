@@ -13,7 +13,7 @@ all:
     class:        sfPropelDatabase
     param:
       classname:  PropelPDO
-      dsn:        mysql:dbname=health;host=localhost
+      dsn:        mysql:dbname=city;host=localhost
       username:   root
       password:   111111
       encoding:   utf8

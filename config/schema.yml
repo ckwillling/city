@@ -1,0 +1,90 @@
+propel:
+  shopinfo:
+    id:
+    f_name:
+      type: varchar
+      size: 50
+      required: true
+      default:
+    f_password:
+      type: varchar
+      size: 40
+      required: true
+      default:
+    f_number:
+      type: varchar
+      size: 20
+      required: true
+      default:
+    f_mobile:
+      type: varchar
+      size: 20
+      required: true
+      default:
+    f_address:
+      type: varchar
+      size: 100
+      required: true
+      default:
+    _uniques:
+      f_name:
+        - f_name
+  menuinfo:
+    id:
+    menuname:
+      type: varchar
+      size: 50
+      required: true
+      default:
+    menu_link:
+      type: varchar
+      size: 100
+      required: true
+      default: true
+    parent_id:
+      type: integer
+      required: true
+      default: 0
+    shopinfo_id:
+      type: integer
+      required: true
+      default: 0
+      foreignTable: shopinfo
+      foreignReference: id
+  shoppage:
+    id:
+    page_title:
+      type: varchar
+      size: 50
+      required: true
+      defalut:
+    page_number:
+      type: varchar
+      size: 20
+      required: true
+      default:
+    page_content:
+      type: longvarchar
+      required: true
+      defalut:
+    shopinfo_id:
+      type: integer
+      required: true
+      default: 0
+      foreignTable: shopinfo
+      foreignReference: id
+    created_at:
+    updated_at:
+    is_mainpage:
+       type: tinyint
+       required: true
+       default: 0
+    _uniques:
+      page_title:
+        - page_title
+
+
+
+
+
+
