@@ -1,0 +1,36 @@
+  #################################################
+  #files
+  #################################################
+  *.tmproj
+  ._*
+  .buildpath
+  .DS_Store
+  .project
+  dir_conflicts.prej
+  propel-build-model.log
+  result_box.dat
+  symfony.php
+  Thumbs.db
+  apps/frontend/templates/layout.php
+ 
+  #################################################
+  #files in folders
+  #################################################
+  .settings/
+  build/
+  .idea/
+ 
+  #don't ignore all the dir named 'cache' underneath
+  !cache/
+  #but only ignore the one under application root
+  /cache/
+
+  log/
+  nbproject/
+  web/uploads/
+  
+  ##################################################
+  #folders
+  ##################################################
+  web/media
+  node_modules
