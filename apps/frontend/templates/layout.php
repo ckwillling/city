@@ -7,6 +7,6 @@
     <link rel="shortcut icon" href="/favicon.ico" />
   </head>
   <body>
-    <?php echo 'helloworld' ?>
+    <?php echo 'helloworld'; ?>
   </body>
 </html>

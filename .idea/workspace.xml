@@ -5,7 +5,7 @@
     <ignored path="health.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/schema.yml" changelist="e94ca5fe-b9fc-4654-833b-828c809f2c9b" time="1375010642096" ignored="false" />
-    <file path="/layout.php" changelist="e94ca5fe-b9fc-4654-833b-828c809f2c9b" time="1376308938979" ignored="false" />
+    <file path="/layout.php" changelist="e94ca5fe-b9fc-4654-833b-828c809f2c9b" time="1376482218501" ignored="false" />
     <file path="/index.php" changelist="e94ca5fe-b9fc-4654-833b-828c809f2c9b" time="1376481220932" ignored="false" />
     <file path="/ProjectConfiguration.class.php" changelist="e94ca5fe-b9fc-4654-833b-828c809f2c9b" time="1376481395909" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,28 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="layout.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/frontend/templates/layout.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="30" selection-start="393" selection-end="393" vertical-scroll-proportion="-5.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="48" selection-start="56" selection-end="56" vertical-scroll-proportion="-1.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="frontend_dev.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/frontend_dev.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="1" selection-start="367" selection-end="367" vertical-scroll-proportion="0.21212122">
+            <state line="9" column="28" selection-start="391" selection-end="391" vertical-scroll-proportion="0.2596154">
               <folding />
             </state>
           </provider>
@@ -84,10 +66,10 @@
       <list>
         <option value="$PROJECT_DIR$/config/databases.yml" />
         <option value="$PROJECT_DIR$/config/schema.yml" />
-        <option value="$PROJECT_DIR$/apps/frontend/templates/layout.php" />
         <option value="$PROJECT_DIR$/web/index.php" />
         <option value="$PROJECT_DIR$/config/ProjectConfiguration.class.php" />
         <option value="$PROJECT_DIR$/web/frontend_dev.php" />
+        <option value="$PROJECT_DIR$/apps/frontend/templates/layout.php" />
       </list>
     </option>
   </component>
@@ -383,20 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="48" selection-start="56" selection-end="56" vertical-scroll-proportion="-1.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/frontend/templates/layout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="393" selection-end="393" vertical-scroll-proportion="-5.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/schema.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="14" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -413,7 +381,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/frontend_dev.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="1" selection-start="367" selection-end="367" vertical-scroll-proportion="0.21212122">
+        <state line="8" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.24242425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="48" selection-start="56" selection-end="56" vertical-scroll-proportion="0.08858268">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/frontend/templates/layout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="28" selection-start="391" selection-end="391" vertical-scroll-proportion="0.2596154">
           <folding />
         </state>
       </provider>
