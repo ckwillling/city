@@ -2,4 +2,5 @@
 
 class Menuinfo extends BaseMenuinfo
 {
+
 }

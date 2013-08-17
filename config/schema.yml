@@ -36,6 +36,11 @@ propel:
       size: 50
       required: true
       default:
+    menutype:
+      type: tinyint
+      size: 1
+      required: true
+      defalut: 0
     menu_link:
       type: varchar
       size: 100

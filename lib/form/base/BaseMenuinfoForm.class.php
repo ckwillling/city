@@ -14,6 +14,7 @@ class BaseMenuinfoForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'menuname'    => new sfWidgetFormInput(),
+      'menutype'    => new sfWidgetFormInput(),
       'menu_link'   => new sfWidgetFormInput(),
       'parent_id'   => new sfWidgetFormInput(),
       'shopinfo_id' => new sfWidgetFormPropelChoice(array('model' => 'Shopinfo', 'add_empty' => false)),
@@ -22,6 +23,7 @@ class BaseMenuinfoForm extends BaseFormPropel
     $this->setValidators(array(
       'id'          => new sfValidatorPropelChoice(array('model' => 'Menuinfo', 'column' => 'id', 'required' => false)),
       'menuname'    => new sfValidatorString(array('max_length' => 50)),
+      'menutype'    => new sfValidatorInteger(),
       'menu_link'   => new sfValidatorString(array('max_length' => 100)),
       'parent_id'   => new sfValidatorInteger(),
       'shopinfo_id' => new sfValidatorPropelChoice(array('model' => 'Shopinfo', 'column' => 'id')),
