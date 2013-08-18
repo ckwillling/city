@@ -27,19 +27,91 @@ class pageActions extends sfActions
 
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod('post'));
-
-    $this->form = new ShoppageForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
+    $this->forward('page','edit');
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($shoppage = ShoppagePeer::retrieveByPk($request->getParameter('id')), sprintf('Object shoppage does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ShoppageForm($shoppage);
+    $id = $request->getParameter('id');
+    $page_num = md5(time());
+    $params = array(
+    'id'           => $id,
+    'page_title'   => $request->getParameter('page_title'),
+    'page_content' => $request->getParameter('page_content'),
+    'is_main_page'=> $request->getParameter('is_main'),
+    'page_number'  => $page_num,
+    'shop_id'      => $request->getParameter('shop')
+    );
+    $this->isEdit = 0;
+
+    if($id)
+    {
+      $this->pageRecord = ShoppagePeer::retrieveByPK($id);
+      if($this->pageRecord)
+      {
+        $this->isEdit = 1;
+      }
+    }
+
+    if($this->isEdit)
+    {
+      if($request->getMethod() == sfRequest::POST)
+      {
+        $this->saveToPageDb($this->pageRecord,$params);
+      }
+      $this->setTemplate('input');
+    }
+    else
+    {
+      if($request->getMethod() == sfRequest::POST)
+      {
+        $pageinfo = new Shoppage();
+        $this->saveTopageDb($pageinfo, $params);
+      }
+          $this->setTemplate('input');
+    }
+  }
+
+  public function saveToPageDb($page, $params)
+  {
+    if($params['is_main_page'])
+    {
+     $page = $this->modifyMainPage($page, $params['shop_id']);
+    }
+    $page->setPageTitle($params['page_title']);
+    $page->setPageContent($params['page_content']);
+    $page-> setPageNumber($params['page_number']);
+      var_dump($params);
+      exit;
+    $page->setShopinfoId($params['shop_id']);
+
+
+    if($page->save())
+    {
+      $this->redirect('page/index');
+    }
+  }
+
+  public function modifyMainPage($page, $shopId)
+  {
+
+    $mainpage = ShoppagePeer::retrieveMainPageByShopId($shopId);
+var_dump($mainpage);
+    if($mainpage)
+    {
+      echo $mainpage->getId;
+
+      if($mainpage->getId() == $page->getId())
+      {
+        return $page;
+      }
+      //这里应该用事务，设置唯一首页，有待改进
+      $mainpage->setIsMainpage(0);
+      $mainpage->save();
+    }
+    $page->setIsMainpage(1);
+
+    return $page;
   }
 
   public function executeUpdate(sfWebRequest $request)
