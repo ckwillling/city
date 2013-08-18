@@ -24,6 +24,7 @@
       <td><?php echo $shoppage->getCreatedAt() ?></td>
       <td><?php echo $shoppage->getUpdatedAt() ?></td>
       <td><?php echo $shoppage->getIsMainpage() ?></td>
+      <td><?=link_to('delete',url_for('page/delete?id='.$shoppage->getId())) ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

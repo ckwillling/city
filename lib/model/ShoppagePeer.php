@@ -8,6 +8,6 @@ class ShoppagePeer extends BaseShoppagePeer
     $c->add(self::SHOPINFO_ID,$shopId);
     $c->add(self::IS_MAINPAGE,1);
 
-    return self::doSelect($c);
+    return self::doSelectOne($c);
   }
 }

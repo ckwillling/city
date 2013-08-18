@@ -22,7 +22,7 @@ class pageActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new ShoppageForm();
+    $this->forward('page','edit');
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -81,8 +81,7 @@ class pageActions extends sfActions
     $page->setPageTitle($params['page_title']);
     $page->setPageContent($params['page_content']);
     $page-> setPageNumber($params['page_number']);
-      var_dump($params);
-      exit;
+
     $page->setShopinfoId($params['shop_id']);
 
 
@@ -96,7 +95,6 @@ class pageActions extends sfActions
   {
 
     $mainpage = ShoppagePeer::retrieveMainPageByShopId($shopId);
-var_dump($mainpage);
     if($mainpage)
     {
       echo $mainpage->getId;
@@ -127,11 +125,11 @@ var_dump($mainpage);
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($shoppage = ShoppagePeer::retrieveByPk($request->getParameter('id')), sprintf('Object shoppage does not exist (%s).', $request->getParameter('id')));
-    $shoppage->delete();
-
+    $this->page = ShoppagePeer::retrieveByPK($request->getParameter('id'));
+    if($this->page)
+    {
+      $this->page->delete();
+    }
     $this->redirect('page/index');
   }
 
