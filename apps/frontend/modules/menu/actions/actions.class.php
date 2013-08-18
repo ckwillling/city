@@ -22,7 +22,7 @@ class menuActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new MenuinfoForm();
+    $this->forward('menu','edit');
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -98,11 +98,15 @@ class menuActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
+    //$request->checkCSRFProtection();
 
-    $this->forward404Unless($menuinfo = MenuinfoPeer::retrieveByPk($request->getParameter('id')), sprintf('Object menuinfo does not exist (%s).', $request->getParameter('id')));
-    $menuinfo->delete();
-
+    //$this->forward404Unless($menuinfo = MenuinfoPeer::retrieveByPk($request->getParameter('id')), sprintf('Object menuinfo does not exist (%s).', $request->getParameter('id')));
+    //$menuinfo->delete();
+    $this->menuinfo = MenuinfoPeer::retrieveByPK($request->getParameter('id'));
+    if($this->menuinfo)
+    {
+      $this->menuinfo->delete();
+    }
     $this->redirect('menu/index');
   }
 

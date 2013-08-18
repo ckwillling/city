@@ -20,6 +20,7 @@
       <td><?php echo $menuinfo->getMenuLink() ?></td>
       <td><?php echo $menuinfo->getParentId() ?></td>
       <td><?php echo $menuinfo->getShopinfoId() ?></td>
+      <td><?=link_to('delte','menu/delete?id='.$menuinfo->getId())?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
