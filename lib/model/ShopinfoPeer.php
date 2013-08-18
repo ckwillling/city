@@ -2,10 +2,10 @@
 
 class ShopinfoPeer extends BaseShopinfoPeer
 {
-  public static function getShopByFName($fname)
+  public static function retrieveShopByFName($fname)
   {
     $c = new Criteria();
     $c->add(self::F_NAME,$fname);
-    return self::doSelect($c);
+    return self::doSelectOne($c);
   }
 }

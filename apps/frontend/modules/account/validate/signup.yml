@@ -1,0 +1,9 @@
+fields:
+  user_name:
+    required:
+      msg:       The username cannot be left blank
+    sfStringValidator:
+        min:       6
+        min_err:   This name is too short(6 characters minimum)
+        max:       50
+        max_error: This name is too long(50 characters maximum)

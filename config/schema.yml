@@ -26,6 +26,11 @@ propel:
       size: 100
       required: true
       default:
+    f_fid:
+      type: varchar
+      size: 20
+      required: true
+      default:
     _uniques:
       f_name:
         - f_name
