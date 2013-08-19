@@ -9,13 +9,36 @@
  */
 class accountActions extends sfActions
 {
+  public function executeLoggin(sfWebRequest $request)
+  {
+    if($request->getMethod()==sfRequest::POST)
+    {
+      $username =  $request->getParameter('user_name');
+      $pwd = md5(addslashes($request->getParameter('password')));
+
+      $user = ShopinfoPeer::retrieveByUsernameMd5Password($username,$pwd);
+      if($user!=null)
+      {
+        $user = $user->getFPassword()==$pwd?$user:null;
+      }
+
+      if($request->getParameter('remember_me'))
+      {
+        $response = $this->getResponse();
+        $response->setCookie('shop_id',$user->getId());
+        $response->setCookie('shop_name',$user->getFName());
+      }
+    }
+    $this->setTemplate('logginInput');
+  }
+
   public function executeSignup(sfWebRequest $request)
   {
     if($request->getMethod() == sfRequest::POST)
     {
       $params = array(
       'f_name'     => $request->getParameter('user_name'),
-      'f_password' => $request->getParameter('second_pwd'),
+      'f_password' => addslashes($request->getParameter('second_pwd')),
       'f_mobile'   => $request->getParameter('mobile'),
       'f_address'  => $request->getParameter('address'),
       'f_fid'       => $request->getParameter('user_id'),
