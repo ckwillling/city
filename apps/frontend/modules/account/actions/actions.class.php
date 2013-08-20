@@ -13,20 +13,28 @@ class accountActions extends sfActions
   {
     if($request->getMethod()==sfRequest::POST)
     {
-      $username =  $request->getParameter('user_name');
-      $pwd = md5(addslashes($request->getParameter('password')));
-
-      $user = ShopinfoPeer::retrieveByUsernameMd5Password($username,$pwd);
-      if($user!=null)
+      if($this->getUser()->isAuthenticated())
       {
-        $user = $user->getFPassword()==$pwd?$user:null;
+        $this->redirect('@home');
       }
-
-      if($request->getParameter('remember_me'))
+      else
       {
-        $response = $this->getResponse();
-        $response->setCookie('shop_id',$user->getId());
-        $response->setCookie('shop_name',$user->getFName());
+        $username =  $request->getParameter('user_name');
+        $pwd = md5(addslashes($request->getParameter('password')));
+
+        $user = ShopinfoPeer::retrieveByUsernameMd5Password($username,$pwd);
+        if($user!=null)
+        {
+          $user = $user->getFPassword()==$pwd?$user:null;
+        }
+
+        if($request->getParameter('remember_me'))
+        {
+          $response = $this->getResponse();
+          $response->setCookie('shop_id',$user->getId());
+          $response->setCookie('shop_name',$user->getFName());
+        }
+        $this->getUser()->setLoggin($user);
       }
     }
     $this->setTemplate('logginInput');
