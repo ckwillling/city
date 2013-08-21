@@ -1,3 +1,6 @@
+home:
+  url: /
+  param: { module: home, action: index }
 # default rules
 homepage:
   url:   /
