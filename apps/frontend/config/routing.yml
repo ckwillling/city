@@ -1,6 +1,10 @@
 home:
   url: /
   param: { module: home, action: index }
+
+login:
+  url: /account/login
+  param: { module: account, action: login }
 # default rules
 homepage:
   url:   /

@@ -1,3 +1,4 @@
+<? if($sf_user->isAuthenticated()):?>
 <table>
   <tr>
     <td>菜单ID</td>
@@ -40,3 +41,4 @@
      <? endforeach;?>
 
 </table>
+<? endif;?>

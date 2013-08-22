@@ -1,5 +1,5 @@
 <? use_helper('Form')?>
-<?=form_tag('account/loggin') ?>
+<?=form_tag('account/login') ?>
 用户名：<?=input_tag('user_name')?>
 密码:<?=input_password_tag('password');?>
 <?=submit_tag('submit')?>

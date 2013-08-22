@@ -1,44 +1,48 @@
 <?php
 
-/**
- * account actions.
- *
- * @package    health
- * @subpackage account
- * @author     Your name here
- */
 class accountActions extends sfActions
 {
-  public function executeLoggin(sfWebRequest $request)
+  public function executeLogin(sfWebRequest $request)
   {
-    if($request->getMethod()==sfRequest::POST)
+    $this->redirectIf($this->getUser()->isAuthenticated(),'@home');
+    if($request->getMethod()!=sfRequest::POST)
     {
-      if($this->getUser()->isAuthenticated())
-      {
-        $this->redirect('@home');
-      }
+      require_once(SF_ROOT_DIR.'/lib/vendor/symfony/lib/helper/UrlHelper.php');
+      if($this->getRequest()->getReferer() != url_for(sfConfig::get('sf_login_module').'/'.sfConfig::get('sf_login_action')))
+        $this->getUser()->setAttribute('referer',$this->getRequest()->getUri());
       else
-      {
-        $username =  $request->getParameter('user_name');
-        $pwd = md5(addslashes($request->getParameter('password')));
-
-        $user = ShopinfoPeer::retrieveByUsernameMd5Password($username,$pwd);
-        if($user!=null)
-        {
-          $user = $user->getFPassword()==$pwd?$user:null;
-        }
-
-        if($request->getParameter('remember_me'))
-        {
-          $response = $this->getResponse();
-          $response->setCookie('shop_id',$user->getId());
-          $response->setCookie('shop_name',$user->getFName());
-        }
-        $this->getUser()->setLoggin($user);
-      }
+        $this->getUser()->setAttribute('referer','@home');
     }
-    $this->setTemplate('logginInput');
+    else
+    {
+      $username =  $request->getParameter('user_name');
+      $pwd = md5(addslashes($request->getParameter('password')));
+
+      $user = ShopinfoPeer::retrieveByUsernameMd5Password($username,$pwd);
+      if($user!=null)
+      {
+        $user = $user->getFPassword()==$pwd?$user:null;
+      }
+
+      if($request->getParameter('remember_me'))
+      {
+        $response = $this->getResponse();
+        $response->setCookie('shop_id',$user->getId());
+        $response->setCookie('shop_name',$user->getFName());
+      }
+      $this->getUser()->setLogin($user);
+
+      $this->redirect($this->getUser()->getAttribute('referer'));
+    }
+    $this->setTemplate('loginInput');
   }
+
+  public function executeLogout()
+  {
+      $this->getUser()->clearSession();
+      $this->redirect('@login');
+  }
+
 
   public function executeSignup(sfWebRequest $request)
   {

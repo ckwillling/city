@@ -18,10 +18,7 @@ class homeActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->user =  $this->getUser();
-    if($this->user->isAuthenticated())
-    {
-      $this->menuList = MenuinfoPeer::retrieveByShopId($this->user->getId());
-      $this->pages = ShoppagePeer::retrieveByShopId($this->user->getId());
-    }
+    $this->menuList = MenuinfoPeer::retrieveByShopId($this->user->getId());
+    $this->pages = ShoppagePeer::retrieveByShopId($this->user->getId());
   }
 }
