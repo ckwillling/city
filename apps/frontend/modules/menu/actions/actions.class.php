@@ -11,7 +11,7 @@ class menuActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->menuinfo_list = MenuinfoPeer::doSelect(new Criteria());
+    $this->menuinfo_list = MenuinfoPeer::retrieveByShopId($this->getUser()->getId());
   }
 
   public function executeShow(sfWebRequest $request)
@@ -38,8 +38,9 @@ class menuActions extends sfActions
     'menutype'=>$request->getParameter('menutype'),
     'menulink'=>$request->getParameter('menulink'),
     'parent'  =>$request->getParameter('parent'),
-    'shopid'  =>$request->getParameter('shop')
+    'shopid'  =>$this->getUser()->getId()
     );
+
     $this->isEdit = 0;
 
     if($id)

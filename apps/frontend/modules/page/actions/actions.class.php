@@ -11,7 +11,7 @@ class pageActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->shoppage_list = ShoppagePeer::doSelect(new Criteria());
+    $this->shoppage_list = ShoppagePeer::retrieveByShopId($this->getUser()->getId());
   }
 
   public function executeShow(sfWebRequest $request)
@@ -40,7 +40,7 @@ class pageActions extends sfActions
     'page_content' => $request->getParameter('page_content'),
     'is_main_page'=> $request->getParameter('is_main'),
     'page_number'  => $page_num,
-    'shop_id'      => $request->getParameter('shop')
+    'shop_id'      => $this->getUser()->getId()
     );
     $this->isEdit = 0;
 
@@ -110,17 +110,6 @@ class pageActions extends sfActions
     $page->setIsMainpage(1);
 
     return $page;
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod('post') || $request->isMethod('put'));
-    $this->forward404Unless($shoppage = ShoppagePeer::retrieveByPk($request->getParameter('id')), sprintf('Object shoppage does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ShoppageForm($shoppage);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
   }
 
   public function executeDelete(sfWebRequest $request)
