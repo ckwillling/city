@@ -33,6 +33,13 @@
             </div>
         <?php endif; ?>
 
+        <div id="menu">
+          <? $menus = get_slot('menus') ; ?>
+          <? foreach($menus as $menu): ?>
+             <a href='<?=$menu->getMenuLink()?>'><?=$menu->getMenuname()?></a>
+          <?endforeach;?>
+        </div>
+
         <div class="content">
             <?php echo $sf_content ?>
         </div>

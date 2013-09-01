@@ -51,7 +51,7 @@ class menuActions extends sfActions
         $this->isEdit = 1;
       }
     }
-
+    $this->pages = ShoppagePeer::retrieveByShopId($this->getUser()->getId());
     if($this->isEdit)
     {
       if($request->getMethod() == sfRequest::POST)

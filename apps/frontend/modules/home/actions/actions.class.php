@@ -17,6 +17,10 @@ class homeActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->forward('guestHome','index');
+    }
     $this->user =  $this->getUser();
     $this->menuList = MenuinfoPeer::retrieveByShopId($this->user->getId());
     $this->pages = ShoppagePeer::retrieveByShopId($this->user->getId());

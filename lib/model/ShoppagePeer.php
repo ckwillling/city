@@ -17,4 +17,14 @@ class ShoppagePeer extends BaseShoppagePeer
 
     return self::doSelect($c);
   }
+
+  public static function retrieveByShopIdAndPageId($shopId, $pageId)
+  {
+    $c = new Criteria();
+    $c->add(self::ID, $pageId);
+    $c->add(self::SHOPINFO_ID, $shopId);
+
+    return self::doSelectOne($c);
+  }
+
 }
