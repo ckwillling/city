@@ -41,6 +41,18 @@ class menuActions extends sfActions
     'shopid'  =>$this->getUser()->getId()
     );
 
+    $this->menus = MenuinfoPeer::retrieveByShopId($this->getUser()->getId());
+    $menus = array();
+    foreach($this->menus as $k=>$menu)
+    {
+      $menus[$k]['id'] = $menu->getId();
+      $menus[$k]['parentId'] = $menu->getParentId();
+      $menus[$k]['menuname'] = $menu->getMenuname();
+    }
+    sfLoader::loadHelpers('menu');
+    $this->menuId = $id;
+    $this->menuTree = menuTree($menus);
+
     $this->isEdit = 0;
 
     if($id)

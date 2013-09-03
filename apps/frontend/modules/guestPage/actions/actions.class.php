@@ -35,6 +35,9 @@ class guestPageActions extends sfActions
     $this->shopId = $this->getRequest()->getParameter('shopId');
     $this->pageId = $this->getRequest()->getParameter('pageId');
     $this->menus = MenuinfoPeer::retrieveByShopId($this->shopId);
+//$this->getConfigrations()->loadHelper('menu');
+    sfLoader::loadHelpers('menu');
+    $this->menuTree = menuTree($this->menus);
 
     $this->getResponse()->setSlot('menus',$this->menus);
   }
