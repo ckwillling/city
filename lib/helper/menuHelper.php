@@ -10,19 +10,23 @@ function menuTree($menus=array(), $id = 0, $level=0 )
     {
       $menu['lev'] = $level;
       $tree[] = $menu;
-      $tree = array_merge($tree, menuTree($menus, $menu['id'], $level++));
+      $tree = array_merge($tree, menuTree($menus, $menu['id'], $level+1));
     }
   }
   return $tree;
 }
 
-function menuTreeArray($tree)
+function objMenuTree($menus=array(), $id=0, $level=0)
 {
-  $menuTree = array();
-  foreach($tree as $k => $menu)
+  $tree = array();
+  foreach($menus as $menu)
   {
-    $menuTree[] = array('id'=>$menu[$k][0]->getId, 'parentId'=>$menu[$k][0]->getParentId(),'menuname'=>$menu[$k][0]->getMenuname());
-    $menuTree['lev'] = $menu['lev'];
+    if($menu->getParentId() == $id)
+    {
+      $menu->setLevel($level);
+      $tree[] = $menu;
+      $tree = array_merge($tree, objMenuTree($menus, $menu->getId(), $level+1));
+    }
   }
-  return $menuTree;
+  return $tree;
 }

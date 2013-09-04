@@ -1,9 +1,22 @@
+menuManage:
+  url: /menu/index
+  param: {module: menu, action: index }
+
+pageManage:
+  url: /page/index
+  param: {module: page, action: index }
+#guest shoppages
+shopHome:
+  url: /page/:shopId
+  param: {module: shopHome, action: index }
+
 shopPage:
   url: /page/:shopId/:pageId
   param:  {module: guestPage, action: index }
 
+#home
 home:
-  url: /
+  url: /index
   param: { module: home, action: index }
 
 login:

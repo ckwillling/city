@@ -9,7 +9,7 @@
 <li>父菜单：&nbsp;&nbsp;&nbsp;
  <select name="parent"><option value="0">顶级菜单</option>
   <?foreach($menuTree as $menu):?>
-    <option value=<?=$menu['id']?> <?=$menuId==$menu['id']?'selected':null ?> ><?=$menu['menuname']?></option>
+    <option value=<?=$menu['id']?> <?=$menuId==$menu['id']?'selected':null ?> ><?=str_repeat('&nbsp;&nbsp;',$menu['lev'])?><?=$menu['menuname']?></option>
   <?endforeach;?>
  </select>
 </li>

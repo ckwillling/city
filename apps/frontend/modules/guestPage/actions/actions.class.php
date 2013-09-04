@@ -19,15 +19,20 @@ class guestPageActions extends sfActions
   {
     if($this->pageId == null )
     {
-        $this->redirect404();
+        $this->forward('shopHome','index');
+    }
+    if($this->shopId == null)
+    {
+      $this->redirect('Home/index');
     }
 
     $this->page = ShoppagePeer::retrieveByShopIdAndPageId($this->shopId,$this->pageId);
+
     if(is_null($this->page))
     {
         $this->redirect404();
     }
-
+    return sfView::SUCCESS;
   }
 
   public function preExecute()
@@ -35,10 +40,14 @@ class guestPageActions extends sfActions
     $this->shopId = $this->getRequest()->getParameter('shopId');
     $this->pageId = $this->getRequest()->getParameter('pageId');
     $this->menus = MenuinfoPeer::retrieveByShopId($this->shopId);
-//$this->getConfigrations()->loadHelper('menu');
-    sfLoader::loadHelpers('menu');
-    $this->menuTree = menuTree($this->menus);
+    $mainPage = ShoppagePeer::retrieveMainPageByShopId($this->shopId);
 
-    $this->getResponse()->setSlot('menus',$this->menus);
+    sfLoader::loadHelpers('menu');
+    $this->menuTree = objMenuTree($this->menus);
+
+    $this->getResponse()->setSlot('menus',$this->menuTree);
+    $this->getResponse()->setSlot('shopId',$this->shopId);
+    $this->getResponse()->setSlot('mainPage', $mainPage);
+
   }
 }

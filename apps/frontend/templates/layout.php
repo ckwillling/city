@@ -32,6 +32,12 @@
                 <?php echo $sf_user->getFlash('error') ?>
             </div>
         <?php endif; ?>
+        <div id="menus">
+          <ul class="menus-manage-pages">
+            <li><?=link_to('菜单管理','@menuManage')?></li>
+            <li><?=link_to('文章管理','@pageManage');?></li>
+          </ul>
+        </div>
 
         <div class="content">
             <?php echo $sf_content ?>

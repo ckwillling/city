@@ -42,13 +42,10 @@ class menuActions extends sfActions
     );
 
     $this->menus = MenuinfoPeer::retrieveByShopId($this->getUser()->getId());
-    $menus = array();
-    foreach($this->menus as $k=>$menu)
-    {
-      $menus[$k]['id'] = $menu->getId();
-      $menus[$k]['parentId'] = $menu->getParentId();
-      $menus[$k]['menuname'] = $menu->getMenuname();
-    }
+
+    $menuHandler = new menuHandler();
+    $menus = $menuHandler->menuObjsToArray($this->menus);
+
     sfLoader::loadHelpers('menu');
     $this->menuId = $id;
     $this->menuTree = menuTree($menus);

@@ -34,6 +34,7 @@
         <?php endif; ?>
 
         <div id="menu">
+          <?=link_to('main','@shopPage?shopId='.get_slot('shopId').'&pageId='.get_slot('mainPage')->getId())?>
           <? $menus = get_slot('menus') ; ?>
           <? foreach($menus as $menu): ?>
              <a href='<?=$menu->getMenuLink()?>'><?=$menu->getMenuname()?></a>
